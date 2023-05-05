@@ -1,6 +1,11 @@
 $color-light: white;
 $color-dark: red;
 $line-width: 1px;
+$border-radius: 5rem;
+$gap-medium: 2.5rem; 
+
+$snap-offset: 50%;
+$snap-force: 9; // nombre impaire!
 
 @function customPow($value, $amt) {
   $res: $value;
@@ -33,33 +38,33 @@ body {
 }
 
 .slide {
+  
   position: sticky;
   width: 100%;
   height: 100%;
   top: 0;
   --amt: (var(--index) - var(--scroll));
-  transform: translateY(calc(20% * #{customPow(var(--amt), 9)}));
-
+  transform: translateY(calc(#{$snap-offset} * #{customPow(var(--amt), $snap-force)}));
   background-color: $color-dark;
 }
 .slide::before {
   content: "";
   position: absolute;
   bottom: 100%;
-  height: 5rem;
+  height: $border-radius;
   left: 0;
   width: 100%;
-  border-radius: 0 0 5rem 5rem;
-  box-shadow: -5rem 1px 0 0 $color-dark, 5rem 1px 0 0 $color-dark;
+  border-radius: 0 0 $border-radius $border-radius;
+  box-shadow: -$border-radius 1px 0 0 $color-dark, $border-radius 1px 0 0 $color-dark;
 }
 .slide__card {
   position: relative;
   outline: $line-width solid $color-dark;
   outline-offset: -$line-width;
-  padding: 2.5rem;
+  padding: $gap-medium;
   overflow: hidden;
   background: $color-light;
-  border-radius: 5rem;
+  border-radius: $border-radius;
   width: 100%;
   height: 100%;
 }
