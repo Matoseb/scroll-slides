@@ -21,5 +21,3 @@ prt.onscroll = () => {
   const amt = prt.scrollTop / prt.offsetHeight
   document.body.style.setProperty('--scroll', amt)
 }
-
-prt.onscroll()
